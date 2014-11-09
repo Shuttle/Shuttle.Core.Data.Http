@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>shuttle-core-data-http</id>
+		<version>{semver}</version>
+		<authors>Eben Roux</authors>
+		<owners>Eben Roux</owners>
+		<licenseUrl>https://github.com/shuttle/shuttle-core-data-http/raw/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/shuttle/shuttle-core-data-http</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/Shuttle/shuttle-core-data-http/master/.media/logo.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>IDatabaseConnectionCache implementation for use in web/wcf scenarios.</description>
+		<releaseNotes/>
+		<copyright>Copyright (c) 2011-{year}, Eben Roux</copyright>
+		<tags>shuttle shuttle-core shuttle-core-data orm IDatabaseConnectionCache</tags>
+		<dependencies>
+			<dependency id="shuttle-core-infrastructure" version="[{shuttle-core-infrastructure-version}]" />
+			<dependency id="shuttle-core-data" version="[{shuttle-core-data-version}]" />
+		</dependencies>
+	</metadata>
+</package>
