@@ -14,8 +14,8 @@
 		<copyright>Copyright (c) 2011-{year}, Eben Roux</copyright>
 		<tags>shuttle shuttle-core shuttle-core-data orm IDatabaseConnectionCache</tags>
 		<dependencies>
-			<dependency id="shuttle-core-infrastructure" version="[{shuttle-core-infrastructure-version}]" />
-			<dependency id="shuttle-core-data" version="[{shuttle-core-data-version}]" />
+			<dependency id="shuttle-core-infrastructure" version="{shuttle-core-infrastructure-version}" />
+			<dependency id="shuttle-core-data" version="{shuttle-core-data-version}" />
 		</dependencies>
 	</metadata>
 </package>
