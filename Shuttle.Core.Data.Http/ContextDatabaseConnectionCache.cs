@@ -1,81 +1,88 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ServiceModel;
 using System.Web;
-using Shuttle.Core.Infrastructure;
 
 namespace Shuttle.Core.Data.Http
 {
-	public class ContextDatabaseConnectionCache : IDatabaseConnectionCache
+	public class ContextDatabaseConnectionCache : IDatabaseContextCache
 	{
-		[ThreadStatic]
-		private static Dictionary<string, IDatabaseConnection> connections;
+		[ThreadStatic] private static DatabaseContextCacheItem _cache;
 
-		private static IDictionary Items
+		public IDatabaseContext Current
 		{
-			get
-			{
-				return OperationContext.Current == null && HttpContext.Current == null
-					       ? (connections ?? (connections = new Dictionary<string, IDatabaseConnection>()))
-					       : (OperationContext.Current != null
-						          ? ItemOperationContext.Current.Items
-						          : HttpContext.Current.Items);
-			}
+			get { return GuardedCache().Current; }
 		}
 
-		private static string Key(DataSource source)
+		public void Use(string name)
 		{
-			return string.Format("connection-{0}", source.Key);
+			GuardedCache().Use(name);
 		}
 
-		public IDatabaseConnection Get(DataSource source)
+		public void Use(IDatabaseContext context)
 		{
-			var key = Key(source);
-
-			if (Items[key] == null)
-			{
-				throw new ApplicationException(
-					string.Format("Attempt to retrieve non-existent connection name '{0}' from ContextDatabaseConnectionCache.",
-								  source.Name));
-			}
-
-			return (IDatabaseConnection)Items[key];
+			GuardedCache().Use(context);
 		}
 
-		public IDatabaseConnection Add(DataSource source, IDatabaseConnection connection)
+		public bool Contains(string connectionString)
 		{
-			Guard.AgainstNull(connection, "connection");
-
-			var key = Key(source);
-
-			if (Items[key] != null)
-			{
-				throw new ApplicationException(
-					string.Format("Attempt to add duplicate connection name '{0}' to ContextDatabaseConnectionCache.", source.Name));
-			}
-
-			Items.Add(key, connection);
-
-			return connection;
+			return GuardedCache().Contains(connectionString);
 		}
 
-		public void Remove(DataSource source)
+		public void Add(IDatabaseContext context)
 		{
-			var key = Key(source);
+			GuardedCache().Add(context);
+			GuardedCache().Use(context);
+		}
 
-			if (Items[key] == null)
+		public void Remove(IDatabaseContext context)
+		{
+			GuardedCache().Remove(context);
+		}
+
+		public IDatabaseContext Get(string connectionString)
+		{
+			return GuardedCache().Get(connectionString);
+		}
+
+		private static DatabaseContextCacheItem GuardedCache()
+		{
+			const string key = "__database-context-cache-item__";
+
+			var result = (DatabaseContextCacheItem) (UseThreadStatic()
+				? _cache
+				: (OperationContext.Current != null
+					? ItemOperationContext.Current.Items[key]
+					: HttpContext.Current.Items[key]));
+
+			if (result != null)
 			{
-				throw new ApplicationException(
-					string.Format("Attempt to remove non-existent connection name '{0}' from ContextDatabaseConnectionCache.", source.Name));
+				return result;
 			}
 
-			Items.Remove(key);
+			result = new DatabaseContextCacheItem();
+
+			if (UseThreadStatic())
+			{
+				_cache = result;
+			}
+			else
+			{
+				if (OperationContext.Current != null)
+				{
+					ItemOperationContext.Current.Items[key] = result;
+				}
+				else
+				{
+					HttpContext.Current.Items[key] = result;
+				}
+			}
+
+			return result;
 		}
 
-		public bool Contains(DataSource source)
+		private static bool UseThreadStatic()
 		{
-			return Items[Key(source)] != null;
+			return OperationContext.Current == null && HttpContext.Current == null;
 		}
 	}
 }
