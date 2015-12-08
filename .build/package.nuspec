@@ -9,7 +9,7 @@
 		<projectUrl>https://github.com/shuttle/shuttle-core-data-http</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Shuttle/shuttle-core-data-http/master/.media/logo.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>IDatabaseConnectionCache implementation for use in web/wcf scenarios.</description>
+		<description>IDatabaseContextCache implementation for use in web/wcf scenarios.</description>
 		<releaseNotes/>
 		<copyright>Copyright (c) 2011-{year}, Eben Roux</copyright>
 		<tags>shuttle shuttle-core shuttle-core-data orm IDatabaseConnectionCache</tags>

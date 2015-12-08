@@ -4,7 +4,7 @@ using System.Web;
 
 namespace Shuttle.Core.Data.Http
 {
-	public class ContextDatabaseConnectionCache : IDatabaseContextCache
+	public class ContextDatabaseContextCache : IDatabaseContextCache
 	{
 		[ThreadStatic] private static DatabaseContextCacheItem _cache;
 
