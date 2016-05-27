@@ -6,7 +6,7 @@ namespace Shuttle.Core.Data.Http
 {
 	public class ContextDatabaseContextCache : IDatabaseContextCache
 	{
-		[ThreadStatic] private static DatabaseContextCacheItem _cache;
+		[ThreadStatic] private static DatabaseContextCache _cache;
 
 		public IDatabaseContext Current
 		{
@@ -44,11 +44,11 @@ namespace Shuttle.Core.Data.Http
 			return GuardedCache().Get(connectionString);
 		}
 
-		private static DatabaseContextCacheItem GuardedCache()
+		private static DatabaseContextCache GuardedCache()
 		{
 			const string key = "__database-context-cache-item__";
 
-			var result = (DatabaseContextCacheItem) (UseThreadStatic()
+			var result = (DatabaseContextCache) (UseThreadStatic()
 				? _cache
 				: (OperationContext.Current != null
 					? ItemOperationContext.Current.Items[key]
@@ -59,7 +59,7 @@ namespace Shuttle.Core.Data.Http
 				return result;
 			}
 
-			result = new DatabaseContextCacheItem();
+			result = new DatabaseContextCache();
 
 			if (UseThreadStatic())
 			{
