@@ -1,43 +1,41 @@
-﻿using System.Collections;
+﻿#if (!NETCOREAPP2_0 && !NETSTANDARD2_0)
+using System.Collections;
 using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace Shuttle.Core.Data.Http
 {
-	public class ItemOperationContext : IExtension<OperationContext>
-	{
-		private readonly IDictionary items;
+    public class ItemOperationContext : IExtension<OperationContext>
+    {
+        private ItemOperationContext()
+        {
+            Items = new Dictionary<string, object>();
+        }
 
-		private ItemOperationContext()
-		{
-			items = new Dictionary<string, object>();
-		}
+        public IDictionary Items { get; }
 
-		public IDictionary Items
-		{
-			get { return items; }
-		}
+        public static ItemOperationContext Current
+        {
+            get
+            {
+                var context = OperationContext.Current.Extensions.Find<ItemOperationContext>();
+                if (context == null)
+                {
+                    context = new ItemOperationContext();
+                    OperationContext.Current.Extensions.Add(context);
+                }
 
-		public static ItemOperationContext Current
-		{
-			get
-			{
-				var context = OperationContext.Current.Extensions.Find<ItemOperationContext>();
-				if (context == null)
-				{
-					context = new ItemOperationContext();
-					OperationContext.Current.Extensions.Add(context);
-				}
-				return context;
-			}
-		}
+                return context;
+            }
+        }
 
-		public void Attach(OperationContext owner)
-		{
-		}
+        public void Attach(OperationContext owner)
+        {
+        }
 
-		public void Detach(OperationContext owner)
-		{
-		}
-	}
+        public void Detach(OperationContext owner)
+        {
+        }
+    }
 }
+#endif
