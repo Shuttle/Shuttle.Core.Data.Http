@@ -1,4 +1,11 @@
-Shuttle.Core.Data.Http
-======================
+# Shuttle.Core.Data.Http
 
-`IDatabaseContextCache` implementation for use in web/wcf scenarios.
+```
+PM> Install-Package Shuttle.Core.Data.Http
+```
+
+Register, or use, the `ContextDatabaseContextCache` implementation of the `IDatabaseContextCache` interface for use in web/wcf scenarios:
+
+```
+registry.Register<IDatabaseContextCache, ContextDatabaseContextCache>();
+```
