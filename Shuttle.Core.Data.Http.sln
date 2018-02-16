@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shuttle.Core.Data.Http", "Shuttle.Core.Data.Http\Shuttle.Core.Data.Http.csproj", "{B5B0B37F-8A68-4A72-96F9-3AD0CA2F33B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shuttle.Core.Data.Http", "Shuttle.Core.Data.Http\Shuttle.Core.Data.Http.csproj", "{B5B0B37F-8A68-4A72-96F9-3AD0CA2F33B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6380A72D-9571-4C15-B3C9-C27825B40FA8}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
