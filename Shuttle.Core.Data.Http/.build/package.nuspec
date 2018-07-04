@@ -8,6 +8,7 @@
 		<licenseUrl>https://github.com/shuttle/Shuttle.Core.Data.Http/raw/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/shuttle/Shuttle.Core.Data.Http</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Shuttle/Shuttle.Core.Data.Http/master/.media/logo.png</iconUrl>
+	  <repository type="git" url="https://github.com/Shuttle/Shuttle.Core.Data.git" />
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	  <description>IDatabaseContextCache implementation for use in HTTP (.NET/Core) or WCF (.NET) scenarios.</description>
 		<releaseNotes/>
@@ -19,6 +20,11 @@
 	    </group>
 
 	    <group targetFramework="netstandard2.0">
+	      <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
+	      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
+	    </group>
+
+	    <group targetFramework="netstandard2.1">
 	      <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
 	      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
 	    </group>

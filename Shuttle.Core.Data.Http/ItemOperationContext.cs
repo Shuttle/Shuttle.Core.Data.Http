@@ -1,4 +1,4 @@
-﻿#if (!NETCOREAPP2_0 && !NETSTANDARD2_0)
+﻿#if (!NETCOREAPP2_0 && !NETCOREAPP2_1 && !NETSTANDARD2_0)
 using System.Collections;
 using System.Collections.Generic;
 using System.ServiceModel;
