@@ -27,14 +27,14 @@ namespace Shuttle.Core.Data.Http
 
         public IDatabaseContext Current => GuardedCache().Current;
 
-        public void Use(string name)
+        public ActiveDatabaseContext Use(string name)
         {
-            GuardedCache().Use(name);
+            return GuardedCache().Use(name);
         }
 
-        public void Use(IDatabaseContext context)
+        public ActiveDatabaseContext Use(IDatabaseContext context)
         {
-            GuardedCache().Use(context);
+            return GuardedCache().Use(context);
         }
 
         public bool Contains(string connectionString)
