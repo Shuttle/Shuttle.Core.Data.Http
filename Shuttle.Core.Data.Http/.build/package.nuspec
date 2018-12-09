@@ -29,7 +29,7 @@
 	      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
 	    </group>
 
-	    <group targetFramework="netcoreapp2.0">
+	    <group targetFramework="netcoreapp2.1">
 	      <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
 	      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
 	    </group>
