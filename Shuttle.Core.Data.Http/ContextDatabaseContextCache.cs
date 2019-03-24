@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web;
-#if (!NETCOREAPP2_0 && !NETCOREAPP2_1 && !NETSTANDARD2_0)
+#if (!NETCOREAPP2_1 && !NETSTANDARD2_0)
 using System.ServiceModel;
 #endif
-#if (NETCOREAPP2_0 || NETCOREAPP2_1 || NETSTANDARD2_0)
+#if (NETCOREAPP2_1 || NETSTANDARD2_0)
 using Shuttle.Core.Contract;
 using Microsoft.AspNetCore.Http;
 #endif
@@ -14,7 +14,7 @@ namespace Shuttle.Core.Data.Http
     {
         [ThreadStatic] private static DatabaseContextCache _cache;
 
-#if (NETCOREAPP2_0 || NETCOREAPP2_1 || NETSTANDARD2_0)
+#if (NETCOREAPP2_1 || NETSTANDARD2_0)
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public ContextDatabaseContextCache(IHttpContextAccessor httpContextAccessor)
@@ -40,6 +40,16 @@ namespace Shuttle.Core.Data.Http
         public bool Contains(string connectionString)
         {
             return GuardedCache().Contains(connectionString);
+        }
+
+        public bool ContainsConnectionString(string connectionString)
+        {
+            return GuardedCache().ContainsConnectionString(connectionString);
+        }
+
+        public IDatabaseContext GetConnectionString(string connectionString)
+        {
+            return GuardedCache().GetConnectionString(connectionString);
         }
 
         public void Add(IDatabaseContext context)
