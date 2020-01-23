@@ -1,33 +1,35 @@
 <?xml version="1.0"?>
-<package >
-	<metadata>
-		<id>Shuttle.Core.Data.Http</id>
-		<version>{semver}</version>
-		<authors>Eben Roux</authors>
-		<owners>Eben Roux</owners>
-		<license type="expression">BSD-3-Clause</license>
-		<projectUrl>https://github.com/shuttle/Shuttle.Core.Data.Http</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/Shuttle/Shuttle.Core.Data.Http/master/.media/logo.png</iconUrl>
-	  <repository type="git" url="https://github.com/Shuttle/Shuttle.Core.Data.git" />
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-	  <description>IDatabaseContextCache implementation for use in HTTP (.NET/Core) or WCF (.NET) scenarios.</description>
-		<releaseNotes/>
-		<copyright>Copyright (c) {year}, Eben Roux</copyright>
-	  <tags>shuttle data IDatabaseConnectionCache</tags>
-	  <dependencies>
-	    <group>
-	      <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
-	    </group>
-
-	    <group targetFramework="netstandard2.0">
-	      <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
-	      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
-	    </group>
-
-	    <group targetFramework="netcoreapp2.1">
-	      <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
-	      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
-	    </group>
-	  </dependencies>
-	</metadata>
+<package>
+  <metadata>
+    <id>Shuttle.Core.Data.Http</id>
+    <version>{semver}</version>
+    <authors>Eben Roux</authors>
+    <owners>Eben Roux</owners>
+    <license type="expression">BSD-3-Clause</license>
+    <projectUrl>https://github.com/shuttle/Shuttle.Core.Data.Http</projectUrl>
+    <icon>images\logo.png</icon>
+    <repository type="git" url="https://github.com/Shuttle/Shuttle.Core.Data.git" />
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>IDatabaseContextCache implementation for use in HTTP (.NET/Core) or WCF (.NET) scenarios.</description>
+    <releaseNotes />
+    <copyright>Copyright (c) {year}, Eben Roux</copyright>
+    <tags>shuttle data IDatabaseConnectionCache</tags>
+    <dependencies>
+      <group>
+        <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
+      </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
+        <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
+      </group>
+      <group targetFramework="netcoreapp2.1">
+        <dependency id="Shuttle.Core.Data" version="{Shuttle.Core.Data-version}" />
+        <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="{Microsoft.AspNetCore.Http.Abstractions-version}" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\..\..\.media\logo.png" target="images\" />
+	<file src="lib\**\*.*" target="lib" />
+  </files>
 </package>
