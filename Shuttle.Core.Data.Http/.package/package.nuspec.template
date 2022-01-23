@@ -11,7 +11,7 @@
 		<icon>images\logo.png</icon>
 		<repository type="git" url="https://github.com/Shuttle/Shuttle.Core.Data.Http.git" />
 		<projectUrl>https://github.com/Shuttle/Shuttle.Core.Data.Http</projectUrl>
-		<description>IDatabaseContextCache implementation for use in HTTP (.NET/Core) or WCF (.NET) scenarios.</description>
+		<description>IDatabaseContextCache implementation for use in HTTP scenarios.</description>
 		<copyright>Copyright (c) #{Year}#, Eben Roux</copyright>
 		<tags></tags>
 		<dependencies>

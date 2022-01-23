@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Web;
-#if (!NETCOREAPP2_1 && !NETSTANDARD2_0)
-using System.ServiceModel;
-#endif
-#if (NETCOREAPP2_1 || NETSTANDARD2_0)
 using Shuttle.Core.Contract;
 using Microsoft.AspNetCore.Http;
-#endif
 
 namespace Shuttle.Core.Data.Http
 {
@@ -14,7 +8,6 @@ namespace Shuttle.Core.Data.Http
     {
         [ThreadStatic] private static DatabaseContextCache _cache;
 
-#if (NETCOREAPP2_1 || NETSTANDARD2_0)
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public ContextDatabaseContextCache(IHttpContextAccessor httpContextAccessor)
@@ -23,7 +16,6 @@ namespace Shuttle.Core.Data.Http
 
             _httpContextAccessor = httpContextAccessor;
         }
-#endif
 
         public IDatabaseContext Current => GuardedCache().Current;
 
@@ -72,17 +64,9 @@ namespace Shuttle.Core.Data.Http
         {
             const string key = "__database-context-cache-item__";
 
-#if (!NETCOREAPP2_0 && !NETCOREAPP2_1 && !NETSTANDARD2_0)
-            var result = (DatabaseContextCache) (UseThreadStatic()
-                ? _cache
-                : (OperationContext.Current != null
-                    ? ItemOperationContext.Current.Items[key]
-                    : HttpContext.Current.Items[key]));
-#else
             var result = (DatabaseContextCache) (UseThreadStatic()
                 ? _cache
                 : _httpContextAccessor.HttpContext.Items[key]);
-#endif
 
             if (result != null)
             {
@@ -97,18 +81,7 @@ namespace Shuttle.Core.Data.Http
             }
             else
             {
-#if (!NETCOREAPP2_0 && !NETCOREAPP2_1 && !NETSTANDARD2_0)
-                if (OperationContext.Current != null)
-                {
-                    ItemOperationContext.Current.Items[key] = result;
-                }
-                else
-                {
-                    HttpContext.Current.Items[key] = result;
-                }
-#else
                 _httpContextAccessor.HttpContext.Items[key] = result;
-#endif
             }
 
             return result;
@@ -116,11 +89,7 @@ namespace Shuttle.Core.Data.Http
 
         private bool UseThreadStatic()
         {
-#if (!NETCOREAPP2_0 && !NETCOREAPP2_1 && !NETSTANDARD2_0)
-            return OperationContext.Current == null && HttpContext.Current == null;
-#else
             return _httpContextAccessor.HttpContext == null;
-#endif
         }
     }
 }
