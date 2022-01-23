@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<package>
+	<metadata>
+		<id>Shuttle.Core.Data.Http</id>
+		<version>11.0.1</version>
+		<authors>Eben Roux</authors>
+		<owners>Eben Roux</owners>
+		<license type="expression">BSD-3-Clause</license>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<icon>images\logo.png</icon>
+		<repository type="git" url="https://github.com/Shuttle/Shuttle.Core.Data.Http.git" />
+		<projectUrl>https://github.com/Shuttle/Shuttle.Core.Data.Http</projectUrl>
+		<description>IDatabaseContextCache implementation for use in HTTP (.NET/Core) or WCF (.NET) scenarios.</description>
+		<copyright>Copyright (c) 2022, Eben Roux</copyright>
+		<tags></tags>
+		<dependencies>
+      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="2.1.1" />
+      <dependency id="Shuttle.Core.Contract" version="10.0.1" />
+      <dependency id="Shuttle.Core.Data" version="11.0.0" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="..\..\..\.media\logo.png" target="images" />
+		<file src="lib\**\*.*" target="lib" />
+	</files>
+</package>
