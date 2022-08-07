@@ -4,8 +4,17 @@
 PM> Install-Package Shuttle.Core.Data.Http
 ```
 
-Register, or use, the `ContextDatabaseContextCache` implementation of the `IDatabaseContextCache` interface for use in web/wcf scenarios:
+Provides the `ContextDatabaseContextCache` implementation of the `IDatabaseContextCache` interface for use in web/wcf scenarios:
 
 ```
-registry.Register<IDatabaseContextCache, ContextDatabaseContextCache>();
+services.AddHttpDatabaseContextCache();
 ```
+
+## .Net Core 2.0+
+
+In order to gain access to the relevant `HttpContext` you also need to register the following:
+
+```c#
+services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+```
+
