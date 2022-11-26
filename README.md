@@ -9,12 +9,3 @@ Provides the `ContextDatabaseContextCache` implementation of the `IDatabaseConte
 ```c#
 services.AddHttpDatabaseContextCache();
 ```
-
-## .Net Core 2.0+
-
-In order to gain access to the relevant `HttpContext` you also need to register the following:
-
-```c#
-services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-```
-

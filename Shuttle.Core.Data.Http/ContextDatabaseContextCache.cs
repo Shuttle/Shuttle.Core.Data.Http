@@ -55,6 +55,8 @@ namespace Shuttle.Core.Data.Http
             GuardedCache().Remove(context);
         }
 
+        public bool HasCurrent => GuardedCache().HasCurrent;
+
         public IDatabaseContext Get(string connectionString)
         {
             return GuardedCache().Get(connectionString);
