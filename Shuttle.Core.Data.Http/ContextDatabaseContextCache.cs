@@ -12,9 +12,7 @@ namespace Shuttle.Core.Data.Http
 
         public ContextDatabaseContextCache(IHttpContextAccessor httpContextAccessor)
         {
-            Guard.AgainstNull(httpContextAccessor, nameof(httpContextAccessor));
-
-            _httpContextAccessor = httpContextAccessor;
+            _httpContextAccessor = Guard.AgainstNull(httpContextAccessor, nameof(httpContextAccessor));
         }
 
         public IDatabaseContext Current => GuardedCache().Current;
