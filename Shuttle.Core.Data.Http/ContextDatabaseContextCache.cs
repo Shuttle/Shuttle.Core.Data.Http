@@ -27,6 +27,11 @@ namespace Shuttle.Core.Data.Http
             return GuardedCache().Use(context);
         }
 
+        public IDatabaseContext Find(Predicate<IDatabaseContext> match)
+        {
+            return GuardedCache().Find(match);
+        }
+
         public bool Contains(string connectionString)
         {
             return GuardedCache().Contains(connectionString);
