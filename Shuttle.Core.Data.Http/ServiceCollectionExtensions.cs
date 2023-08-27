@@ -5,11 +5,11 @@ namespace Shuttle.Core.Data.Http
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddHttpDatabaseContextCache(this IServiceCollection services)
+        public static IServiceCollection AddHttpDatabaseContextService(this IServiceCollection services)
         {
             Guard.AgainstNull(services, nameof(services));
 
-            services.AddSingleton<IDatabaseContextCache, ContextDatabaseContextCache>();
+            services.AddSingleton<IDatabaseContextService, ContextDatabaseContextService>();
 
             return services;
         }

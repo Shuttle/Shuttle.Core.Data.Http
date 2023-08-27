@@ -4,8 +4,8 @@
 PM> Install-Package Shuttle.Core.Data.Http
 ```
 
-Provides the `ContextDatabaseContextCache` implementation of the `IDatabaseContextCache` interface for use in web/wcf scenarios:
+Provides the `ContextDatabaseContextService` implementation of the `IDatabaseContextService` interface for use in web/wcf scenarios:
 
 ```c#
-services.AddHttpDatabaseContextCache();
+services.AddHttpDatabaseContextService();
 ```
